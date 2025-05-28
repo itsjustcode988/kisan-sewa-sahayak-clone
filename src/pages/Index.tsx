@@ -153,7 +153,7 @@ const Index = () => {
             </div>
             <span className="text-lg font-semibold">{t('landing.title')}</span>
           </div>
-          <p className="text-green-200">© 2024 {t('landing.title')}. All rights reserved.</p>
+          <p className="text-green-200">Made with ❤️ for the nation {t('landing.title')}.</p>
         </div>
       </footer>
     </div>
