@@ -4,6 +4,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { useAuth } from '@/contexts/AuthContext';
+import { useLanguage } from '@/contexts/LanguageContext';
 import { NavHeader } from '@/components/NavHeader';
 import { 
   Cloud, 
@@ -18,6 +19,7 @@ import {
 
 const Dashboard = () => {
   const { isAuthenticated, user } = useAuth();
+  const { t } = useLanguage();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -28,29 +30,29 @@ const Dashboard = () => {
 
   const services = [
     {
-      title: 'मौसम की जानकारी',
-      description: 'आज का मौसम और अगले 7 दिनों का पूर्वानुमान',
+      title: t('feature.weather.title'),
+      description: t('feature.weather.description'),
       icon: Cloud,
       link: '/weather',
       color: 'bg-blue-500'
     },
     {
-      title: 'बाजार भाव',
-      description: 'सभी फसलों के आज के बाजार भाव देखें',
+      title: t('feature.market.title'),
+      description: t('feature.market.description'),
       icon: TrendingUp,
       link: '/market',
       color: 'bg-green-500'
     },
     {
-      title: 'सरकारी योजनाएं',
-      description: 'किसानों के लिए नवीनतम सरकारी योजनाएं',
+      title: t('feature.schemes.title'),
+      description: t('feature.schemes.description'),
       icon: Award,
       link: '/schemes',
       color: 'bg-orange-500'
     },
     {
-      title: 'विशेषज्ञ सलाह',
-      description: 'कृषि विशेषज्ञों से सीधी बातचीत',
+      title: t('feature.expert.title'),
+      description: t('feature.expert.description'),
       icon: Users,
       link: '/expert',
       color: 'bg-purple-500'
@@ -59,7 +61,7 @@ const Dashboard = () => {
 
   const todayWeather = {
     temp: '28°C',
-    condition: 'धूप',
+    condition: t('common.sunny'),
     humidity: '65%',
     wind: '12 km/h'
   };
@@ -82,10 +84,10 @@ const Dashboard = () => {
         {/* Welcome Section */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-800 mb-2">
-            नमस्कार, {user?.name}! 🌾
+            {t('dashboard.welcome')}, {user?.name}! 🌾
           </h1>
           <p className="text-gray-600">
-            आज आपकी खेती के लिए क्या नया है, देखते हैं
+            {t('dashboard.welcome_message')}
           </p>
         </div>
 
@@ -93,7 +95,7 @@ const Dashboard = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           <Card className="border-blue-200">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium text-blue-600">आज का तापमान</CardTitle>
+              <CardTitle className="text-sm font-medium text-blue-600">{t('dashboard.today_temp')}</CardTitle>
               <Thermometer className="h-4 w-4 text-blue-500" />
             </CardHeader>
             <CardContent>
@@ -104,34 +106,34 @@ const Dashboard = () => {
 
           <Card className="border-cyan-200">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium text-cyan-600">नमी</CardTitle>
+              <CardTitle className="text-sm font-medium text-cyan-600">{t('dashboard.humidity')}</CardTitle>
               <Droplets className="h-4 w-4 text-cyan-500" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold text-cyan-700">{todayWeather.humidity}</div>
-              <p className="text-xs text-cyan-600">सामान्य स्तर</p>
+              <p className="text-xs text-cyan-600">{t('common.normal')}</p>
             </CardContent>
           </Card>
 
           <Card className="border-green-200">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium text-green-600">हवा की गति</CardTitle>
+              <CardTitle className="text-sm font-medium text-green-600">{t('dashboard.wind_speed')}</CardTitle>
               <Wind className="h-4 w-4 text-green-500" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold text-green-700">{todayWeather.wind}</div>
-              <p className="text-xs text-green-600">मध्यम</p>
+              <p className="text-xs text-green-600">{t('common.moderate')}</p>
             </CardContent>
           </Card>
 
           <Card className="border-orange-200">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium text-orange-600">यूवी इंडेक्स</CardTitle>
+              <CardTitle className="text-sm font-medium text-orange-600">{t('dashboard.uv_index')}</CardTitle>
               <Sun className="h-4 w-4 text-orange-500" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold text-orange-700">6</div>
-              <p className="text-xs text-orange-600">मध्यम</p>
+              <p className="text-xs text-orange-600">{t('common.moderate')}</p>
             </CardContent>
           </Card>
         </div>
@@ -165,9 +167,9 @@ const Dashboard = () => {
           <CardHeader>
             <CardTitle className="flex items-center space-x-2">
               <TrendingUp className="h-5 w-5 text-green-600" />
-              <span>आज के बाजार भाव</span>
+              <span>{t('dashboard.market_highlights')}</span>
             </CardTitle>
-            <CardDescription>प्रमुख फसलों की वर्तमान कीमतें</CardDescription>
+            <CardDescription>{t('dashboard.market_description')}</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="grid md:grid-cols-3 gap-4">
@@ -187,7 +189,7 @@ const Dashboard = () => {
             </div>
             <div className="mt-4">
               <Button variant="outline" asChild className="w-full">
-                <Link to="/market">सभी भाव देखें</Link>
+                <Link to="/market">{t('dashboard.view_all_prices')}</Link>
               </Button>
             </div>
           </CardContent>
@@ -196,8 +198,8 @@ const Dashboard = () => {
         {/* Quick Tips */}
         <Card>
           <CardHeader>
-            <CardTitle>आज की सलाह</CardTitle>
-            <CardDescription>आज के मौसम के अनुसार खेती की सलाह</CardDescription>
+            <CardTitle>{t('dashboard.today_advice')}</CardTitle>
+            <CardDescription>{t('dashboard.advice_description')}</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="space-y-3">
