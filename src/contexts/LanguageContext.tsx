@@ -1,3 +1,4 @@
+
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
 type Language = 'en' | 'hi';
@@ -25,7 +26,7 @@ const translations = {
     'auth.login_title': 'Login',
     'auth.signup_title': 'Create Account',
     'auth.login_description': 'Sign in to your account',
-    'auth.signup_description': 'Join the Sarthi family',
+    'auth.signup_description': 'Join the KisanSarthi family',
     'auth.full_name': 'Full Name',
     'auth.email': 'Email Address',
     'auth.phone': 'Mobile Number',
@@ -60,7 +61,7 @@ const translations = {
     'nav.logout_description': 'You have been successfully logged out',
     
     // Landing Page
-    'landing.title': 'Sarthi Kisan Sahayak',
+    'landing.title': 'KisanSarthi',
     'landing.subtitle': 'Your Digital Agriculture Companion',
     'landing.hero_title': 'Digital Solution for Modern Farming',
     'landing.hero_description': 'Weather, market prices, government schemes and expert advice - all in one place. Make your farming more profitable.',
@@ -205,7 +206,7 @@ const translations = {
     'auth.login_title': 'लॉगिन करें',
     'auth.signup_title': 'नया खाता बनाएं',
     'auth.login_description': 'अपने खाते में प्रवेश करें',
-    'auth.signup_description': 'सार्थी परिवार में शामिल हों',
+    'auth.signup_description': 'KisanSarthi परिवार में शामिल हों',
     'auth.full_name': 'पूरा नाम',
     'auth.email': 'ईमेल पता',
     'auth.phone': 'मोबाइल नंबर',
@@ -240,7 +241,7 @@ const translations = {
     'nav.logout_description': 'आपको सफलतापूर्वक लॉगआउट कर दिया गया है',
     
     // Landing Page
-    'landing.title': 'सार्थी किसान सहायक',
+    'landing.title': 'KisanSarthi',
     'landing.subtitle': 'आपका डिजिटल कृषि साथी',
     'landing.hero_title': 'आधुनिक खेती का डिजिटल समाधान',
     'landing.hero_description': 'मौसम, बाजार भाव, सरकारी योजनाएं और विशेषज्ञ सलाह - सब कुछ एक ही जगह। अपनी खेती को बनाएं और भी फायदेमंद।',
