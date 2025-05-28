@@ -1,4 +1,3 @@
-
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
 type Language = 'en' | 'hi';
@@ -22,6 +21,34 @@ export const useLanguage = () => {
 // Translation objects
 const translations = {
   en: {
+    // Authentication
+    'auth.login_title': 'Login',
+    'auth.signup_title': 'Create Account',
+    'auth.login_description': 'Sign in to your account',
+    'auth.signup_description': 'Join the Sarthi family',
+    'auth.full_name': 'Full Name',
+    'auth.email': 'Email Address',
+    'auth.phone': 'Mobile Number',
+    'auth.password': 'Password',
+    'auth.name_placeholder': 'Ram Prasad',
+    'auth.email_placeholder': 'ram@example.com',
+    'auth.phone_placeholder': '+91 9876543210',
+    'auth.password_placeholder': 'Your password',
+    'auth.login_button': 'Login',
+    'auth.signup_button': 'Create Account',
+    'auth.please_wait': 'Please wait...',
+    'auth.new_user': 'New user?',
+    'auth.existing_user': 'Already have an account?',
+    'auth.register_here': 'Register here',
+    'auth.login_here': 'Login here',
+    'auth.login_success': 'Login Successful',
+    'auth.signup_success': 'Account Created',
+    'auth.welcome_message': 'Welcome back!',
+    'auth.account_created': 'Your account has been created successfully',
+    'auth.error': 'Error',
+    'auth.check_credentials': 'Please check your information and try again',
+    'auth.something_wrong': 'Something went wrong. Please try again.',
+
     // Navigation
     'nav.dashboard': 'Dashboard',
     'nav.weather': 'Weather',
@@ -174,6 +201,34 @@ const translations = {
     'common.super': 'Super',
   },
   hi: {
+    // Authentication
+    'auth.login_title': 'लॉगिन करें',
+    'auth.signup_title': 'नया खाता बनाएं',
+    'auth.login_description': 'अपने खाते में प्रवेश करें',
+    'auth.signup_description': 'सार्थी परिवार में शामिल हों',
+    'auth.full_name': 'पूरा नाम',
+    'auth.email': 'ईमेल पता',
+    'auth.phone': 'मोबाइल नंबर',
+    'auth.password': 'पासवर्ड',
+    'auth.name_placeholder': 'राम प्रसाद',
+    'auth.email_placeholder': 'ram@example.com',
+    'auth.phone_placeholder': '+91 9876543210',
+    'auth.password_placeholder': 'आपका पासवर्ड',
+    'auth.login_button': 'लॉगिन करें',
+    'auth.signup_button': 'खाता बनाएं',
+    'auth.please_wait': 'कृपया प्रतीक्षा करें...',
+    'auth.new_user': 'नया उपयोगकर्ता हैं?',
+    'auth.existing_user': 'पहले से खाता है?',
+    'auth.register_here': 'यहाँ रजिस्टर करें',
+    'auth.login_here': 'यहाँ लॉगिन करें',
+    'auth.login_success': 'सफलतापूर्वक लॉगिन',
+    'auth.signup_success': 'खाता बना दिया गया',
+    'auth.welcome_message': 'आपका स्वागत है!',
+    'auth.account_created': 'आपका खाता सफलतापूर्वक बन गया है',
+    'auth.error': 'त्रुटि',
+    'auth.check_credentials': 'कृपया अपनी जानकारी जांचें और पुनः प्रयास करें',
+    'auth.something_wrong': 'कुछ गलत हुआ है। कृपया पुनः प्रयास करें।',
+
     // Navigation
     'nav.dashboard': 'डैशबोर्ड',
     'nav.weather': 'मौसम',
