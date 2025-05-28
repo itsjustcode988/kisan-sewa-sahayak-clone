@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Badge } from '@/components/ui/badge';
 import { useAuth } from '@/contexts/AuthContext';
+import { useLanguage } from '@/contexts/LanguageContext';
 import { NavHeader } from '@/components/NavHeader';
 import { 
   MessageCircle, 
@@ -22,6 +23,7 @@ import {
 
 const ExpertPage = () => {
   const { isAuthenticated } = useAuth();
+  const { t } = useLanguage();
   const navigate = useNavigate();
   const [selectedExpert, setSelectedExpert] = useState(null);
   const [question, setQuestion] = useState('');
@@ -112,8 +114,8 @@ const ExpertPage = () => {
       
       <div className="container mx-auto px-4 py-8">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-800 mb-2">विशेषज्ञ सलाह</h1>
-          <p className="text-gray-600">कृषि विशेषज्ञों से सीधी बातचीत करें</p>
+          <h1 className="text-3xl font-bold text-gray-800 mb-2">{t('expert.title')}</h1>
+          <p className="text-gray-600">{t('expert.description')}</p>
         </div>
 
         <div className="grid lg:grid-cols-3 gap-8">
@@ -121,8 +123,8 @@ const ExpertPage = () => {
           <div className="lg:col-span-2">
             <Card className="mb-6">
               <CardHeader>
-                <CardTitle>उपलब्ध विशेषज्ञ</CardTitle>
-                <CardDescription>अपनी समस्या के अनुसार विशेषज्ञ चुनें</CardDescription>
+                <CardTitle>{t('expert.available_experts')}</CardTitle>
+                <CardDescription>{t('expert.choose_expert')}</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
@@ -165,17 +167,17 @@ const ExpertPage = () => {
                         </div>
                         <div className="flex flex-col items-end space-y-2">
                           <Badge variant={expert.available ? "default" : "secondary"}>
-                            {expert.available ? 'उपलब्ध' : 'व्यस्त'}
+                            {expert.available ? t('expert.available') : t('expert.busy')}
                           </Badge>
                           {expert.available && (
                             <div className="flex space-x-2">
                               <Button size="sm" variant="outline">
                                 <MessageCircle className="h-4 w-4 mr-1" />
-                                चैट
+                                {t('expert.chat')}
                               </Button>
                               <Button size="sm" variant="outline">
                                 <Phone className="h-4 w-4 mr-1" />
-                                कॉल
+                                {t('expert.call')}
                               </Button>
                             </div>
                           )}
@@ -190,20 +192,20 @@ const ExpertPage = () => {
             {/* Quick Question */}
             <Card>
               <CardHeader>
-                <CardTitle>त्वरित प्रश्न पूछें</CardTitle>
-                <CardDescription>अपना प्रश्न लिखें और तुरंत उत्तर पाएं</CardDescription>
+                <CardTitle>{t('expert.quick_question')}</CardTitle>
+                <CardDescription>{t('expert.question_description')}</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
                   <Textarea 
-                    placeholder="अपना प्रश्न यहाँ लिखें..."
+                    placeholder={t('expert.question_placeholder')}
                     value={question}
                     onChange={(e) => setQuestion(e.target.value)}
                     rows={3}
                   />
                   <Button onClick={handleSendMessage} className="w-full">
                     <Send className="h-4 w-4 mr-2" />
-                    प्रश्न भेजें
+                    {t('expert.send_question')}
                   </Button>
                 </div>
 
@@ -232,7 +234,7 @@ const ExpertPage = () => {
           <div>
             <Card className="mb-6">
               <CardHeader>
-                <CardTitle>आपकी सलाह सेशन</CardTitle>
+                <CardTitle>{t('expert.your_sessions')}</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-3">
@@ -240,7 +242,7 @@ const ExpertPage = () => {
                     <div key={consultation.id} className="p-3 border rounded-lg">
                       <div className="flex items-center justify-between mb-2">
                         <Badge variant={consultation.status === 'पूर्ण' ? 'default' : 'secondary'}>
-                          {consultation.status}
+                          {consultation.status === 'पूर्ण' ? t('expert.completed') : t('expert.upcoming')}
                         </Badge>
                         <div className="flex items-center text-sm text-gray-500">
                           <Calendar className="h-3 w-3 mr-1" />
@@ -264,27 +266,27 @@ const ExpertPage = () => {
 
             <Card>
               <CardHeader>
-                <CardTitle>सलाह बुक करें</CardTitle>
+                <CardTitle>{t('expert.book_consultation')}</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
                   <div className="flex space-x-2">
                     <Button variant="outline" className="flex-1">
                       <Video className="h-4 w-4 mr-1" />
-                      वीडियो कॉल
+                      {t('expert.video_call')}
                     </Button>
                     <Button variant="outline" className="flex-1">
                       <Phone className="h-4 w-4 mr-1" />
-                      फोन कॉल
+                      {t('expert.phone_call')}
                     </Button>
                   </div>
                   <div className="text-center">
                     <Clock className="h-8 w-8 text-gray-400 mx-auto mb-2" />
-                    <p className="text-sm text-gray-600">अगला उपलब्ध समय</p>
+                    <p className="text-sm text-gray-600">{t('expert.next_available')}</p>
                     <p className="font-medium">आज शाम 4:00 बजे</p>
                   </div>
                   <Button className="w-full">
-                    अभी बुक करें
+                    {t('expert.book_now')}
                   </Button>
                 </div>
               </CardContent>

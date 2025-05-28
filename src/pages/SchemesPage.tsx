@@ -1,17 +1,18 @@
-
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { useAuth } from '@/contexts/AuthContext';
+import { useLanguage } from '@/contexts/LanguageContext';
 import { NavHeader } from '@/components/NavHeader';
 import { Award, Calendar, Users, DollarSign, FileText, ExternalLink } from 'lucide-react';
 
 const SchemesPage = () => {
   const { isAuthenticated } = useAuth();
+  const { t } = useLanguage();
   const navigate = useNavigate();
-  const [selectedCategory, setSelectedCategory] = useState('सभी');
+  const [selectedCategory, setSelectedCategory] = useState(t('schemes.all_categories'));
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -19,7 +20,14 @@ const SchemesPage = () => {
     }
   }, [isAuthenticated, navigate]);
 
-  const categories = ['सभी', 'फसल बीमा', 'सब्सिडी', 'ऋण', 'किसान कल्याण', 'तकनीकी सहायता'];
+  const categories = [
+    t('schemes.all_categories'), 
+    t('schemes.crop_insurance'), 
+    t('schemes.subsidy'), 
+    t('schemes.loan'), 
+    t('schemes.farmer_welfare'), 
+    t('schemes.technical_support')
+  ];
 
   const schemes = [
     {
@@ -91,7 +99,7 @@ const SchemesPage = () => {
   ];
 
   const filteredSchemes = schemes.filter(scheme => 
-    selectedCategory === 'सभी' || scheme.category === selectedCategory
+    selectedCategory === t('schemes.all_categories') || scheme.category === selectedCategory
   );
 
   const getStatusColor = (status: string) => {
@@ -108,53 +116,53 @@ const SchemesPage = () => {
       
       <div className="container mx-auto px-4 py-8">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-800 mb-2">सरकारी योजनाएं</h1>
-          <p className="text-gray-600">किसानों के लिए नवीनतम सरकारी योजनाओं की पूरी जानकारी</p>
+          <h1 className="text-3xl font-bold text-gray-800 mb-2">{t('schemes.title')}</h1>
+          <p className="text-gray-600">{t('schemes.description')}</p>
         </div>
 
         {/* Summary Cards */}
         <div className="grid md:grid-cols-4 gap-6 mb-8">
           <Card className="border-green-200">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium text-green-600">कुल योजनाएं</CardTitle>
+              <CardTitle className="text-sm font-medium text-green-600">{t('schemes.total_schemes')}</CardTitle>
               <Award className="h-4 w-4 text-green-500" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold text-green-700">{schemes.length}</div>
-              <p className="text-xs text-green-600">उपलब्ध योजनाएं</p>
+              <p className="text-xs text-green-600">{t('schemes.available_schemes')}</p>
             </CardContent>
           </Card>
           
           <Card className="border-blue-200">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium text-blue-600">सक्रिय योजनाएं</CardTitle>
+              <CardTitle className="text-sm font-medium text-blue-600">{t('schemes.active_schemes')}</CardTitle>
               <Users className="h-4 w-4 text-blue-500" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold text-blue-700">{schemes.filter(s => s.status === 'सक्रिय').length}</div>
-              <p className="text-xs text-blue-600">आवेदन के लिए खुली</p>
+              <p className="text-xs text-blue-600">{t('schemes.open_applications')}</p>
             </CardContent>
           </Card>
 
           <Card className="border-orange-200">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium text-orange-600">कुल लाभ राशि</CardTitle>
+              <CardTitle className="text-sm font-medium text-orange-600">{t('schemes.total_benefit')}</CardTitle>
               <DollarSign className="h-4 w-4 text-orange-500" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold text-orange-700">₹12.5L+</div>
-              <p className="text-xs text-orange-600">अधिकतम लाभ</p>
+              <p className="text-xs text-orange-600">{t('schemes.max_benefit')}</p>
             </CardContent>
           </Card>
 
           <Card className="border-purple-200">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium text-purple-600">आवेदन समय</CardTitle>
+              <CardTitle className="text-sm font-medium text-purple-600">{t('schemes.application_time')}</CardTitle>
               <Calendar className="h-4 w-4 text-purple-500" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold text-purple-700">7-15</div>
-              <p className="text-xs text-purple-600">दिन प्रोसेसिंग</p>
+              <p className="text-xs text-purple-600">{t('schemes.processing_days')}</p>
             </CardContent>
           </Card>
         </div>
@@ -193,7 +201,7 @@ const SchemesPage = () => {
                   </div>
                   <div className="text-right">
                     <div className="text-2xl font-bold text-green-600">{scheme.amount}</div>
-                    <div className="text-sm text-gray-500">अधिकतम लाभ</div>
+                    <div className="text-sm text-gray-500">{t('schemes.max_benefit')}</div>
                   </div>
                 </div>
               </CardHeader>
@@ -201,7 +209,7 @@ const SchemesPage = () => {
               <CardContent>
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
-                    <h4 className="font-semibold text-gray-800 mb-2">मुख्य लाभ:</h4>
+                    <h4 className="font-semibold text-gray-800 mb-2">{t('schemes.main_benefits')}:</h4>
                     <ul className="space-y-1">
                       {scheme.benefits.map((benefit, idx) => (
                         <li key={idx} className="text-sm text-gray-600 flex items-center">
@@ -213,7 +221,7 @@ const SchemesPage = () => {
                   </div>
                   
                   <div>
-                    <h4 className="font-semibold text-gray-800 mb-2">आवश्यक दस्तावेज:</h4>
+                    <h4 className="font-semibold text-gray-800 mb-2">{t('schemes.required_documents')}:</h4>
                     <ul className="space-y-1">
                       {scheme.documents.map((doc, idx) => (
                         <li key={idx} className="text-sm text-gray-600 flex items-center">
@@ -228,11 +236,11 @@ const SchemesPage = () => {
                 <div className="mt-6 p-4 bg-gray-50 rounded-lg">
                   <div className="grid md:grid-cols-2 gap-4 text-sm">
                     <div>
-                      <span className="font-medium text-gray-700">पात्रता: </span>
+                      <span className="font-medium text-gray-700">{t('schemes.eligibility')}: </span>
                       <span className="text-gray-600">{scheme.eligibility}</span>
                     </div>
                     <div>
-                      <span className="font-medium text-gray-700">अंतिम तिथि: </span>
+                      <span className="font-medium text-gray-700">{t('schemes.deadline')}: </span>
                       <span className="text-gray-600">{scheme.deadline}</span>
                     </div>
                   </div>
@@ -241,14 +249,14 @@ const SchemesPage = () => {
                 <div className="flex space-x-3 mt-6">
                   <Button className="bg-green-600 hover:bg-green-700">
                     <ExternalLink className="w-4 h-4 mr-2" />
-                    आवेदन करें
+                    {t('schemes.apply_now')}
                   </Button>
                   <Button variant="outline">
-                    विस्तार से पढ़ें
+                    {t('schemes.read_more')}
                   </Button>
                   <Button variant="outline">
                     <FileText className="w-4 h-4 mr-2" />
-                    गाइड डाउनलोड करें
+                    {t('schemes.download_guide')}
                   </Button>
                 </div>
               </CardContent>
@@ -259,21 +267,21 @@ const SchemesPage = () => {
         {/* Help Section */}
         <Card className="mt-8 bg-blue-50 border-blue-200">
           <CardHeader>
-            <CardTitle className="text-blue-800">सहायता चाहिए?</CardTitle>
+            <CardTitle className="text-blue-800">{t('schemes.need_help')}</CardTitle>
             <CardDescription className="text-blue-600">
-              योजनाओं के बारे में अधिक जानकारी या आवेदन में सहायता के लिए
+              {t('schemes.help_description')}
             </CardDescription>
           </CardHeader>
           <CardContent>
             <div className="flex flex-col md:flex-row gap-4">
               <Button variant="outline" className="border-blue-300 text-blue-700">
-                हेल्पलाइन: 1800-180-1551
+                {t('schemes.helpline')}
               </Button>
               <Button variant="outline" className="border-blue-300 text-blue-700">
-                ऑनलाइन चैट सपोर्ट
+                {t('schemes.chat_support')}
               </Button>
               <Button variant="outline" className="border-blue-300 text-blue-700">
-                नजदीकी कार्यालय खोजें
+                {t('schemes.find_office')}
               </Button>
             </div>
           </CardContent>

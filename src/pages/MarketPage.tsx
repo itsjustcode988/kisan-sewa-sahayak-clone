@@ -1,18 +1,19 @@
-
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { useAuth } from '@/contexts/AuthContext';
+import { useLanguage } from '@/contexts/LanguageContext';
 import { NavHeader } from '@/components/NavHeader';
 import { TrendingUp, TrendingDown, Search, MapPin } from 'lucide-react';
 
 const MarketPage = () => {
   const { isAuthenticated } = useAuth();
+  const { t } = useLanguage();
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('सभी');
+  const [selectedCategory, setSelectedCategory] = useState(t('market.all_categories'));
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -20,7 +21,15 @@ const MarketPage = () => {
     }
   }, [isAuthenticated, navigate]);
 
-  const categories = ['सभी', 'अनाज', 'दालें', 'तिलहन', 'सब्जियां', 'फल', 'मसाले'];
+  const categories = [
+    t('market.all_categories'), 
+    t('market.grains'), 
+    t('market.pulses'), 
+    t('market.oilseeds'), 
+    t('market.vegetables'), 
+    t('market.fruits'), 
+    t('market.spices')
+  ];
 
   const marketData = [
     { 
@@ -117,7 +126,7 @@ const MarketPage = () => {
 
   const filteredData = marketData.filter(item => {
     const matchesSearch = item.name.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesCategory = selectedCategory === 'सभी' || item.category === selectedCategory;
+    const matchesCategory = selectedCategory === t('market.all_categories') || item.category === selectedCategory;
     return matchesSearch && matchesCategory;
   });
 
@@ -137,8 +146,8 @@ const MarketPage = () => {
       
       <div className="container mx-auto px-4 py-8">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-800 mb-2">बाजार भाव</h1>
-          <p className="text-gray-600">आज के ताजा बाजार भाव और मूल्य रुझान</p>
+          <h1 className="text-3xl font-bold text-gray-800 mb-2">{t('market.title')}</h1>
+          <p className="text-gray-600">{t('market.description')}</p>
         </div>
 
         {/* Search and Filter */}
@@ -148,7 +157,7 @@ const MarketPage = () => {
               <div className="relative flex-1">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
                 <Input
-                  placeholder="फसल का नाम खोजें..."
+                  placeholder={t('market.search_placeholder')}
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className="pl-10"
@@ -174,18 +183,18 @@ const MarketPage = () => {
         <div className="grid md:grid-cols-4 gap-6 mb-8">
           <Card className="border-green-200">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium text-green-600">कुल फसलें</CardTitle>
+              <CardTitle className="text-sm font-medium text-green-600">{t('market.total_crops')}</CardTitle>
               <TrendingUp className="h-4 w-4 text-green-500" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold text-green-700">{filteredData.length}</div>
-              <p className="text-xs text-green-600">उपलब्ध भाव</p>
+              <p className="text-xs text-green-600">{t('market.available_prices')}</p>
             </CardContent>
           </Card>
           
           <Card className="border-blue-200">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium text-blue-600">औसत वृद्धि</CardTitle>
+              <CardTitle className="text-sm font-medium text-blue-600">{t('market.average_growth')}</CardTitle>
               <TrendingUp className="h-4 w-4 text-blue-500" />
             </CardHeader>
             <CardContent>
@@ -196,7 +205,7 @@ const MarketPage = () => {
 
           <Card className="border-orange-200">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium text-orange-600">सर्वोच्च मूल्य</CardTitle>
+              <CardTitle className="text-sm font-medium text-orange-600">{t('market.highest_price')}</CardTitle>
               <TrendingUp className="h-4 w-4 text-orange-500" />
             </CardHeader>
             <CardContent>
@@ -207,7 +216,7 @@ const MarketPage = () => {
 
           <Card className="border-purple-200">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium text-purple-600">सक्रिय मंडियां</CardTitle>
+              <CardTitle className="text-sm font-medium text-purple-600">{t('market.active_markets')}</CardTitle>
               <MapPin className="h-4 w-4 text-purple-500" />
             </CardHeader>
             <CardContent>
@@ -220,8 +229,8 @@ const MarketPage = () => {
         {/* Market Data Table */}
         <Card>
           <CardHeader>
-            <CardTitle>आज के बाजार भाव</CardTitle>
-            <CardDescription>सभी प्रमुख मंडियों से ताजा भाव</CardDescription>
+            <CardTitle>{t('market.today_prices')}</CardTitle>
+            <CardDescription>{t('market.fresh_prices')}</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
@@ -278,19 +287,19 @@ const MarketPage = () => {
           <CardContent>
             <div className="grid md:grid-cols-2 gap-4">
               <div className="p-4 bg-green-50 rounded-lg border border-green-200">
-                <h4 className="font-medium text-green-800 mb-2">बेचने का अच्छा समय</h4>
+                <h4 className="font-medium text-green-800 mb-2">{t('market.selling_advice')}</h4>
                 <p className="text-sm text-green-700">गेहूं और सरसों की कीमतें बढ़ रही हैं। अगले 2-3 दिन में बेचना फायदेमंद होगा।</p>
               </div>
               <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
-                <h4 className="font-medium text-blue-800 mb-2">गुणवत्ता का ध्यान</h4>
+                <h4 className="font-medium text-blue-800 mb-2">{t('market.quality_focus')}</h4>
                 <p className="text-sm text-blue-700">A ग्रेड की फसल का मूल्य अधिक मिल रहा है। फसल की सफाई और ग्रेडिंग पर ध्यान दें।</p>
               </div>
               <div className="p-4 bg-orange-50 rounded-lg border border-orange-200">
-                <h4 className="font-medium text-orange-800 mb-2">मंडी का चुनाव</h4>
+                <h4 className="font-medium text-orange-800 mb-2">{t('market.market_selection')}</h4>
                 <p className="text-sm text-orange-700">नजदीकी मंडी में भाव कम है तो दूसरी मंडी का भाव भी जांचें। परिवहन खर्च जोड़कर तुलना करें।</p>
               </div>
               <div className="p-4 bg-purple-50 rounded-lg border border-purple-200">
-                <h4 className="font-medium text-purple-800 mb-2">भंडारण सलाह</h4>
+                <h4 className="font-medium text-purple-800 mb-2">{t('market.storage_advice')}</h4>
                 <p className="text-sm text-purple-700">दाल की कीमतें स्थिर हैं। उचित भंडारण कर 2-3 महीने बाद बेचना बेहतर हो सकता है।</p>
               </div>
             </div>
