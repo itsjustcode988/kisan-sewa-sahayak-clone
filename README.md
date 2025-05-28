@@ -1,73 +1,36 @@
-# Welcome to your Lovable project
+# KisanSarthi 🌾
 
-## Project info
+**Live Demo:** https://kisansarthi.vercel.app
 
-**URL**: https://lovable.dev/projects/96487d62-cbe8-4a31-b1a6-973cbcea9db5
+KisanSarthi is a smart, accessible, and user-friendly platform built to empower Indian farmers with real-time data-driven insights. Whether it's market price predictions, crop advisory, or simplified access to mandi rates, KisanSarthi aims to bridge the information gap in agriculture using technology.
 
-## How can I edit this code?
+## 🌟 Features
 
-There are several ways of editing your application.
+- 📈 **Crop Price Prediction**: Get AI-powered price forecasts for various agricultural commodities.
+- 🏪 **Mandi Rate Updates**: Stay up-to-date with live mandi prices across major Indian markets.
+- 🧠 **Smart Recommendations**: AI-driven crop planning suggestions based on season, location, and market trends.
+- 🔍 **User-friendly Interface**: Built with farmers in mind — simple, responsive, and local-language ready.
+- 📊 **Visual Analytics**: Graphs and insights to help make data-backed decisions.
 
-**Use Lovable**
+## 🚀 Tech Stack
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/96487d62-cbe8-4a31-b1a6-973cbcea9db5) and start prompting.
+- **Frontend**: Next.js (React) + Tailwind CSS
+- **Backend**: Node.js + Express (or any API server, if applicable)
+- **ML/AI Models**: Python-based price prediction algorithms (if included)
+- **Deployment**: Vercel
+- **APIs**: Government of India Agri APIs, custom price prediction APIs
 
-Changes made via Lovable will be committed automatically to this repo.
+## 🛠️ Installation & Setup (Development)
 
-**Use your preferred IDE**
+```bash
+# Clone the repository
+git clone https://github.com/your-username/kisansarthi.git
+cd kisansarthi
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+# Install dependencies
+npm install
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Start the development server
 npm run dev
+
 ```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/96487d62-cbe8-4a31-b1a6-973cbcea9db5) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
