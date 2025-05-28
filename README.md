@@ -15,16 +15,16 @@ KisanSarthi is a smart, accessible, and user-friendly platform built to empower 
 ## 🚀 Tech Stack
 
 - **Frontend**: Next.js (React) + Tailwind CSS
-- **Backend**: Node.js + Express (or any API server, if applicable)
-- **ML/AI Models**: Python-based price prediction algorithms (if included)
+- **Backend**: Node.js + Express 
+- **ML/AI Models**: to be included
 - **Deployment**: Vercel
-- **APIs**: Government of India Agri APIs, custom price prediction APIs
+
 
 ## 🛠️ Installation & Setup (Development)
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/kisansarthi.git
+git clone https://github.com/itsjustcode988/kisansarthi.git
 cd kisansarthi
 
 # Install dependencies
